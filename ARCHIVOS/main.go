@@ -16,9 +16,14 @@ func main() {
 	// Declaración implicita :=
 	edad := 30
 
+	// Imprimir variables
 	fmt.Println("Nombre: ", nombre)
 	fmt.Println("Apellido: ", apellido)
 	fmt.Println("Edad: ", edad)
+
+	// Constantes
+	const pi float64 = 3.1416
+	fmt.Println("Valor de PI: ", pi)
 
 
 }

@@ -83,6 +83,61 @@ func main() {
 	fmt.Println("No puede salir: ", noPuedeSalir)
 
 
+	// Estructuras de control
+	//Condicionales - IF ELSE SWITCH
+
+	// IF ELSE
+
+	edadC := 18
+
+	if edadC >= 18 {
+		// Codigo a ejecutar si la condicion es verdadera
+		fmt.Println("Es mayor de edad")
+	} else {
+		// Codigo a ejecutar si la condicion es falsa
+		fmt.Println("Es menor de edad")
+	}
+
+	// SWITCH
+
+	dia := 3
+	switch dia {
+	case 1:
+		fmt.Println("Lunes")
+	case 2:
+		fmt.Println("Martes")
+	case 3:
+		fmt.Println("Miercoles")
+	case 4:
+		fmt.Println("Jueves")
+	case 5:
+		fmt.Println("Viernes")
+	case 6:
+		fmt.Println("Sabado")
+	case 7:
+		fmt.Println("Domingo")
+	default:
+		fmt.Println("Día no valido")
+	}
+
+	// Bucle o Ciclo - FOR
+
+	// For clásico tradicional
+
+	for i:=0; i < 10; i++ {
+		// Codigo a ejecutar
+		fmt.Println("Iteracion: ", i)	
+	}
+
+	// For con range para recorrer arreglos
+
+	nombres := []string{"Pedro", "Juan", "Maria"}
+
+	for i, nombre := range nombres {
+		fmt.Println(i, nombre)
+	}
+
+
 
 
 

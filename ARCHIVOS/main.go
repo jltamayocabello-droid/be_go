@@ -61,6 +61,30 @@ func main() {
 	fmt.Println("Division: ", division)
 	fmt.Println("Modulo: ", modulo)
 
+	// Operadores Lógicos
+	// && || !
+	
+	esAdulto := true
+	tienePermiso := false
+
+	// AND &&
+
+	puedeEntrar := esAdulto && tienePermiso
+	fmt.Println("Puede entrar: ", puedeEntrar)
+
+	// OR ||
+
+	puedeSalir := esAdulto || tienePermiso
+	fmt.Println("Puede salir: ", puedeSalir)
+
+	// NOT !
+
+	noPuedeSalir := !tienePermiso
+	fmt.Println("No puede salir: ", noPuedeSalir)
+
+
+
+
 
 
 }

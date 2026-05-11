@@ -39,6 +39,28 @@ func main() {
 	// Booleanos - true false
 	var booleano bool = true
 
+	fmt.Println("Entero: ", entero)
+	fmt.Println("Flotante: ", flotante)
+	fmt.Println("Cadena: ", cadena)
+	fmt.Println("Booleano: ", booleano)
+
+	// Operadores Aritmeticos
+	// + - * / %
+
+	num1 := 10
+	num2 := 4
+	suma := num1 + num2
+	resta := num1 - num2
+	multiplicacion := num1 * num2
+	division := num1 / num2
+	modulo := num1 % num2
+
+	fmt.Println("Suma: ", suma)
+	fmt.Println("Resta: ", resta)
+	fmt.Println("Multiplicacion: ", multiplicacion)
+	fmt.Println("Division: ", division)
+	fmt.Println("Modulo: ", modulo)
+
 
 
 }

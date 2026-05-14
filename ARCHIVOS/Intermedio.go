@@ -1,3 +1,0 @@
-// Colecciones de Datos
-
-// Arrays

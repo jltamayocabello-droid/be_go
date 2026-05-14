@@ -159,3 +159,9 @@ Comentarios de multiples lineas
 		restar := num1 - num2
 		return sumar, restar
 	}
+
+// Función que no devuelve nada
+
+func saludar() {
+	fmt.Println("Saludo desde una función en GO")
+}

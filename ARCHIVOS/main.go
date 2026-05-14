@@ -137,10 +137,11 @@ func main() {
 		fmt.Println(i, nombre)
 	}
 
+	// Llamado de función
 
-
-
-
+	sumar, resta := sumarRestar(10, 20) 
+	fmt.Println("Sumar: ", sumar)
+	fmt.Println("Resta: ", resta)
 
 }
 
@@ -149,3 +150,12 @@ func main() {
 /*
 Comentarios de multiples lineas
 */
+
+// Funciones
+
+// Declaración de función
+	func sumarRestar(num1 int, num2 int) (int, int) {
+		sumar := num1 + num2
+		restar := num1 - num2
+		return sumar, restar
+	}

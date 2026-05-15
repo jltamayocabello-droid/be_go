@@ -57,6 +57,19 @@ func main() {
 		fmt.Println(i, num)
 	}
 
-	
+	// Range maps
+
+	capitales := map[string]string{
+		"Colombia": "Bogota",
+		"Peru": "Lima",
+		"Argentina": "Buenos Aires",
+		"Chile": "Santiago",
+	}
+
+	for pais, capital := range capitales{
+		fmt.Println(pais, capital)
+	}
+
+
 
 }

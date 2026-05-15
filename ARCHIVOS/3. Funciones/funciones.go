@@ -2,6 +2,14 @@ package main
 
 import "fmt"
 
+// Funciones que va a retornar otra función
+
+	func multiplicarRetorno(factor int) func(int) int{
+		return func(value int) int{
+			return value * factor
+		}
+	}
+
 func main() {
 
 	// Funciones anónimas
@@ -36,6 +44,12 @@ func main() {
 
 	fmt.Println("Suma: ", add(200, 300))
 
+	// Funciones que va a retornar otra función
+
+	variable_multiplicar := multiplicarRetorno(2)
+	fmt.Println("El doble es: ", variable_multiplicar(4))
+
 
 
 }
+

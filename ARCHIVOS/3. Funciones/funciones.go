@@ -28,6 +28,14 @@ func main() {
 		return x + y
 	}(20, 300))
 
+	// Funciones como valores
+
+	add := func(c int, d int)int {
+		return c + d
+	}
+
+	fmt.Println("Suma: ", add(200, 300))
+
 
 
 }

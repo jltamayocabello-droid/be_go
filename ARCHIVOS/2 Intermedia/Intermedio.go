@@ -30,4 +30,24 @@ func main() {
 
 	fmt.Println(frutas)
 	fmt.Println(frutasTropicales)
+
+	// Maps
+
+	var edades map[string]int
+	edades = make(map[string]int)
+
+	edades["Pedro"] = 30
+	edades["Juan"] = 25
+	edades["Maria"] = 28
+
+	fmt.Println(edades)
+	fmt.Println(edades["Pedro"])
+
+	edades_new := map[string]int{
+		"Elisa": 30,
+		"Majorie": 22,
+		"Rimu": 23,
+	}
+	fmt.Println(edades_new["Rimu"])
+
 }

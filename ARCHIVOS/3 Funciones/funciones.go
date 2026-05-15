@@ -49,6 +49,31 @@ func main() {
 	variable_multiplicar := multiplicarRetorno(2)
 	fmt.Println("El doble es: ", variable_multiplicar(4))
 
+	// Closures
+
+	//Función que no usa closure
+
+	counter := func()int{
+		count := 0
+		count++
+		return count
+	}
+	fmt.Println(counter())
+	fmt.Println(counter())
+	fmt.Println(counter())
+
+	// Función con closure
+
+	counterClosure := func() func() int{
+		count := 0
+		return func()int{
+			count ++
+			return count
+		}
+	}()
+	fmt.Println(counterClosure())
+	fmt.Println(counterClosure())
+	fmt.Println(counterClosure())
 
 
 }

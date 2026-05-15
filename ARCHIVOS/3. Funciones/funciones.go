@@ -22,6 +22,12 @@ func main() {
 
 	fmt.Println("El doble es: ", doble)
 
+	// Usar una función anónima sin asignarla  a una variable
+
+	fmt.Println("La suma es: ", func(x, y int) int {
+		return x + y
+	}(20, 300))
+
 
 
 }

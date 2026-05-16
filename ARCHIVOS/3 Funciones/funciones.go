@@ -10,6 +10,15 @@ import "fmt"
 		}
 	}
 
+// Función con recursión
+
+func sumarRecursion(n int) int {
+	if n == 0 {
+		return 0
+	}
+	return n + sumarRecursion(n - 1)
+}
+
 func main() {
 
 	// Funciones anónimas
@@ -74,6 +83,14 @@ func main() {
 	fmt.Println(counterClosure())
 	fmt.Println(counterClosure())
 	fmt.Println(counterClosure())
+
+	// Recursión
+
+	numeroR := 5
+	resultadoR := sumarRecursion(numeroR)
+	fmt.Println("La suma es: ", numeroR, resultadoR)
+
+
 
 
 }

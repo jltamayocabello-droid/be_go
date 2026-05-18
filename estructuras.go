@@ -25,6 +25,30 @@ func (b *Book) ApplyDiscount(discount float64){
 	b.Price = b.Price - discount
 }
 
+// Estructura  embebida (o embedding) 
+
+type Empleado struct{
+	Nombre string
+	Edad int
+}
+
+func (e Empleado) MostrarDetalles(){
+	fmt.Println(e.Nombre)
+	fmt.Println(e.Edad)
+}
+
+type Gerente struct{
+	Empleado
+	Departamento string
+}
+
+func (g Gerente) MostrarDetallesGerente(){
+	fmt.Println(g.Nombre)
+	fmt.Println(g.Edad)
+	fmt.Println(g.Departamento)
+}
+
+
 func main() { 
 	
 	// Crear instancia
@@ -44,4 +68,23 @@ func main() {
 	fmt.Println("---Detalles del libro con el descuento---")
 	myBook.DisplayDetails()
 
+	//  embebida (o embedding) 
+
+	empleado := Empleado{
+		Nombre: "Pedro",
+		Edad: 30,
+	}
+
+	gerente := Gerente{
+		Empleado: Empleado{
+			Nombre: "Pedro",
+			Edad: 30,
+		},
+		Departamento: "Desarrollo",
+	}
+
+	empleado.MostrarDetalles()
+	gerente.MostrarDetallesGerente()
+
 }
+

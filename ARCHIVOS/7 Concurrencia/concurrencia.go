@@ -18,7 +18,7 @@ func main() {
 	
 	// Canales
 
-	canal := make(chan string)
+	canal := make(chan string) 
 	
 	// Gorutine para enviar un mensaje
 	go func() { canal <- "Escribiendo desde un canal"}()
@@ -26,4 +26,20 @@ func main() {
 	// Recibir el mensaje
 	mensaje := <-canal
 	fmt.Println(mensaje)	
+
+
+	// Buffered canales
+
+	canal2 := make(chan string, 3) 
+	
+	canal2 <- "Mensaje 1"
+	canal2 <- "Mensaje 2"
+	canal2 <- "Mensaje 3"
+	
+	// Cerrar el canal
+	close(canal2)
+	
+	// Recibiendo mensaje del canal
+	mensaje2 := <-canal2
+	fmt.Println(mensaje2)
 }

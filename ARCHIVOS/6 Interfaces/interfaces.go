@@ -24,6 +24,10 @@ func (r Rectangle) area() float64 {
 	return r.width * r.height
 }
 
+// Interfaces vacías
+
+interface{}
+
 func main() {
 
 	c := Circle{10}

@@ -29,6 +29,15 @@ func dividir2(a, b float64) (float64, error) {
 	return a / b, nil
 }
 
+// Error con panic
+
+func dividirConPanic(a, b float64) (float64, error) {
+	if b == 0 {
+		panic("No se puede dividir por cero")
+	}
+	return a / b, nil
+}
+
 func main() {
 	resultado, err := dividir(10, 0) // Intento de división con error
 	if err != nil {
@@ -47,4 +56,11 @@ func main() {
 	} else {
 		fmt.Println("El resultado es: ", resultado)
 	}
+
+	// Error con panic
+
+	fmt.Println("Inicio del programa")
+	resultadoConPanic, err := dividirConPanic(6, 0)
+	fmt.Println("El resultado de la división: ", resultadoConPanic)
+	fmt.Println("Fin del programa")
 }

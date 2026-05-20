@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 // Goroutines
 func say(s string){
@@ -42,4 +45,35 @@ func main() {
 	// Recibiendo mensaje del canal
 	mensaje2 := <-canal2
 	fmt.Println(mensaje2)
+
+
+	// Select
+
+	// Crear dos canales
+
+	canal3 := make(chan string) 
+	canal4 := make(chan string) 
+	
+	// Goroutines para enviar datos al canal3 despues de 1 segundo
+	go func() { 
+		time.Sleep(time.Second * 1)
+		canal3 <- "Mensaje desde canal 3"
+	}()
+
+	//Goroutine para enviar datos al canal4 despues de 2 segundos
+	go func() { 
+		time.Sleep(time.Second * 2)
+		canal4 <- "Mensaje desde canal 4"
+	}()
+
+	// Usar el select para esperar el mensaje de ambos canales
+
+	for i := 0; i < 2; i++{
+		select {
+			case msg := <-canal3:
+				fmt.Println(msg)
+			case msg := <-canal4:
+				fmt.Println(msg)
+		}
+	}
 }

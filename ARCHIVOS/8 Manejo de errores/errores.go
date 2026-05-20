@@ -38,6 +38,14 @@ func dividirConPanic(a, b float64) (float64, error) {
 	return a / b, nil
 }
 
+// Manejar con panic
+
+func manejarPanic() {
+	if r := recover(); r != nil {
+		fmt.Println("Ocurrio un error: ", r)
+	}
+}
+
 func main() {
 	resultado, err := dividir(10, 0) // Intento de división con error
 	if err != nil {
@@ -58,6 +66,8 @@ func main() {
 	}
 
 	// Error con panic
+
+	defer manejarPanic() // Manejo de panic
 
 	fmt.Println("Inicio del programa")
 	resultadoConPanic, err := dividirConPanic(6, 0)

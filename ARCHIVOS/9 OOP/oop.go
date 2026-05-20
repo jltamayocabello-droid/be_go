@@ -11,7 +11,27 @@ func (p Persona) saludar() {
 	fmt.Println("Hola, soy", p.Nombre, "y tengo", p.Edad, "años")
 }
 
+// Ejemplo con interfaces
+
+type Hablador interface{
+	Hablar()
+}
+
+type PersonaHablador struct{
+	Nombre string
+	Edad   int
+}
+
+func (p *PersonaHablador) Hablar() {
+	fmt.Println("Hola, soy", p.Nombre, "y tengo", p.Edad, "años")
+}
+
 func main() {
 	p := Persona{"Pedro", 30}
 	p.saludar()
+
+	// Ejemplo con interfaces
+
+	Pedro := PersonaHablador{"Manuel", 40}
+	Pedro.Hablar()
 }	

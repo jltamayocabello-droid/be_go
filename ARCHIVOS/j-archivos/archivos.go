@@ -7,7 +7,7 @@ import (
 
 func main() {
 	// Nombre del archivo que vamos a leer
-	fileName := "ejemplo.txt"
+	fileName := "ARCHIVOS/j-archivos/ejemplo.txt"
 
 	content, err := ioutil.ReadFile(fileName)
 	if err != nil {

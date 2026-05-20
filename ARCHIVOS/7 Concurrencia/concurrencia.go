@@ -76,4 +76,28 @@ func main() {
 				fmt.Println(msg)
 		}
 	}
+
+	// Multiplexado de canales
+
+	// Crear dos canales
+
+	canal5 := make(chan string) 
+	canal6 := make(chan string)
+
+	go func() { 
+		canal5 <- "Mensaje desde canal 5"
+	}()
+
+	go func ()  {
+		canal6 <- "Mensaje desde canal 6"
+	}()
+	
+	for i := 0; i < 2; i++{
+		select {
+			case msg := <-canal5:
+				fmt.Println(msg)
+			case msg := <-canal6:
+				fmt.Println(msg)
+		}
+	}
 }

@@ -2,133 +2,126 @@ package main
 
 import (
 	"fmt"
+	"sync"
 	"time"
 )
 
 // Goroutines
-func say(s string){
-	for i := 0; i < 5; i++{
+func say(s string) {
+	for i := 0; i < 5; i++ {
 		fmt.Println(s)
 	}
 }
 
+// Combinar canales (Se mueve FUERA de main)
+func combinar(canal1, canal2 <-chan string) <-chan string {
+	salida := make(chan string)
+	var wg sync.WaitGroup
+
+	wg.Add(2) // Esperaremos a las dos goroutines
+
+	go func() {
+		for mensajeCombinar := range canal1 {
+			salida <- mensajeCombinar
+		}
+		wg.Done()
+	}()
+
+	go func() {
+		for mensajeCombinar := range canal2 {
+			salida <- mensajeCombinar
+		}
+		wg.Done()
+	}()
+
+	// Cerramos el canal de salida solo cuando ambas terminen
+	go func() {
+		wg.Wait()
+		close(salida)
+	}()
+
+	return salida
+}
+
 func main() {
-
-	// Goroutines (hilos ligeros)
-
+	// 1. Goroutines (hilos ligeros)
 	go say("world")
 	say("hello")
-	
-	// Canales
 
-	canal := make(chan string) 
-	
-	// Gorutine para enviar un mensaje
-	go func() { canal <- "Escribiendo desde un canal"}()
-	
-	// Recibir el mensaje
+	// 2. Canales
+	canal := make(chan string)
+	go func() { canal <- "Escribiendo desde un canal" }()
 	mensaje := <-canal
-	fmt.Println(mensaje)	
+	fmt.Println(mensaje)
 
-
-	// Buffered canales
-
-	canal2 := make(chan string, 3) 
-	
+	// 3. Buffered canales
+	canal2 := make(chan string, 3)
 	canal2 <- "Mensaje 1"
 	canal2 <- "Mensaje 2"
 	canal2 <- "Mensaje 3"
-	
-	// Cerrar el canal
 	close(canal2)
-	
-	// Recibiendo mensaje del canal
+
 	mensaje2 := <-canal2
 	fmt.Println(mensaje2)
 
+	// 4. Select
+	canal3 := make(chan string)
+	canal4 := make(chan string)
 
-	// Select
-
-	// Crear dos canales
-
-	canal3 := make(chan string) 
-	canal4 := make(chan string) 
-	
-	// Goroutines para enviar datos al canal3 despues de 1 segundo
-	go func() { 
+	go func() {
 		time.Sleep(time.Second * 1)
 		canal3 <- "Mensaje desde canal 3"
 	}()
 
-	//Goroutine para enviar datos al canal4 despues de 2 segundos
-	go func() { 
+	go func() {
 		time.Sleep(time.Second * 2)
 		canal4 <- "Mensaje desde canal 4"
 	}()
 
-	// Usar el select para esperar el mensaje de ambos canales
-
-	for i := 0; i < 2; i++{
+	for i := 0; i < 2; i++ {
 		select {
-			case msg := <-canal3:
-				fmt.Println(msg)
-			case msg := <-canal4:
-				fmt.Println(msg)
+		case msg := <-canal3:
+			fmt.Println(msg)
+		case msg := <-canal4:
+			fmt.Println(msg)
 		}
 	}
 
-	// Multiplexado de canales
-
-	// Crear dos canales
-
-	canal5 := make(chan string) 
+	// 5. Multiplexado de canales
+	canal5 := make(chan string)
 	canal6 := make(chan string)
 
-	go func() { 
+	go func() {
 		canal5 <- "Mensaje desde canal 5"
 	}()
 
-	go func ()  {
+	go func() {
 		canal6 <- "Mensaje desde canal 6"
 	}()
-	
-	for i := 0; i < 2; i++{
+
+	for i := 0; i < 2; i++ {
 		select {
-			case msg := <-canal5:
-				fmt.Println(msg)
-			case msg := <-canal6:
-				fmt.Println(msg)
+		case msg := <-canal5:
+			fmt.Println(msg)
+		case msg := <-canal6:
+			fmt.Println(msg)
 		}
 	}
 
-	// Combinar canales
+	// 6. Demostración de Combinar canales
+	c1 := make(chan string)
+	c2 := make(chan string)
 
-	func combinar(canal,1, canal2 <- chan string) <-chan string {
-		salida := make(chan string)
+	go func() {
+		c1 <- "Combinado A"
+		close(c1)
+	}()
+	go func() {
+		c2 <- "Combinado B"
+		close(c2)
+	}()
 
-		go func() {
-			for mensajeCombinar:= range canal1 {
-				salida <- mensajeCombinar
-			}
-		}()
-
-		go func() {
-			for mensajeCombinar:= range canal2 {
-				salida <- mensajeCombinar
-			}
-		}()
-		return salida
-	}
-			}
-			func main() {
-				canal1 := make(chan string)
-				canal2 := make(chan string)
-				canalCombinado := combinar(canal1, canal2)
-				for mensaje := range canalCombinado {
-					fmt.Println(mensaje)
-		}
-	}
-	canalCombinardo := combinar(canal1, canal2)
+	canalCombinado := combinar(c1, c2)
 	for mensaje := range canalCombinado {
 		fmt.Println(mensaje)
 	}

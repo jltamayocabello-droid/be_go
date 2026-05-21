@@ -54,6 +54,24 @@ func ListTasks() {
 	}
 }
 
+// Funcion para actualizar una tarea
+func UpdateTask() {
+	var id int
+	fmt.Print("Ingrese el ID de la tarea: ")
+	fmt.Scanln(&id)
+	for i, task := range tasks {
+		if task.ID == id {
+			tasks[i].Completed = !task.Completed
+			fmt.Println("Tarea actualizada exitosamente")
+			return
+		}
+	}
+	fmt.Println("Tarea no encontrada")
+}
+	
+	
+
+
 
 // Funcion principal
 

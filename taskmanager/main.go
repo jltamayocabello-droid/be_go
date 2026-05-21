@@ -14,7 +14,7 @@ type Task struct {
 
 // Variables globales
 
-var tasks = []Task
+var tasks = []Task{}
 var idCounter int
 
 // Funciones
@@ -69,7 +69,20 @@ func UpdateTask() {
 	fmt.Println("Tarea no encontrada")
 }
 	
-	
+// Funcion para eliminar una tarea
+func DeleteTask() {
+	var id int
+	fmt.Print("Ingrese el ID de la tarea: ")
+	fmt.Scanln(&id)
+	for i, task := range tasks {
+		if task.ID == id {
+			tasks = append(tasks[:i], tasks[i+1:]...)
+			fmt.Println("Tarea eliminada exitosamente")
+			return
+		}
+	}
+	fmt.Println("Tarea no encontrada")
+}
 
 
 

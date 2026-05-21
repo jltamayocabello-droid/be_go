@@ -19,6 +19,7 @@ var idCounter int
 
 // Funciones
 
+// Funcion para crear una tarea
 func CreateTask() {
 	var title, description string
 	fmt.Print("Ingrese el titulo de la tarea: ")
@@ -36,6 +37,23 @@ func CreateTask() {
 	tasks = append(tasks, newTask)
 	fmt.Println("Tarea creada exitosamente")
 }
+
+// Funcion para listar las tareas
+func ListTasks() {
+	if len(tasks) == 0 {
+		fmt.Println("No hay tareas creadas")
+		return
+	}
+	fmt.Println("Lista de Tareas:")
+	for _, task := range tasks {
+		status := "Pendiente"
+		if task.Completed {
+			status = "Completada"
+		}
+		fmt.Printf("ID: %d, Titulo: %s, Descripcion: %s, Completada: %t\n", task.ID, task.Title, task.Description, status)
+	}
+}
+
 
 // Funcion principal
 

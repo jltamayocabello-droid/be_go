@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 
+// Estructura de Tarea
 type Task struct {
 	ID int
 	Title string
@@ -11,10 +12,15 @@ type Task struct {
 	Completed bool
 }
 
+// Variables globales
+
 var tasks = []Task
 var idCounter int
 
+// Funciones
 
+
+// Funcion principal
 
 func main() {
 	for {

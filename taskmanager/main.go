@@ -19,6 +19,23 @@ var idCounter int
 
 // Funciones
 
+func CreateTask() {
+	var title, description string
+	fmt.Print("Ingrese el titulo de la tarea: ")
+	fmt.Scanln(&title)
+	fmt.Print("Ingrese la descripcion de la tarea: ")
+	fmt.Scanln(&description)
+
+	idCounter++
+	newTask := Task{
+		ID: idCounter,
+		Title: title,
+		Description: description,
+		Completed: false,
+	}
+	tasks = append(tasks, newTask)
+	fmt.Println("Tarea creada exitosamente")
+}
 
 // Funcion principal
 

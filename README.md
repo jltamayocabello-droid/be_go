@@ -127,8 +127,7 @@ go run main.go
 
 ## ✒️ Autor
 **Jorge Tamayo Cabello**
-- 🔗 **GitHub:** [@jltamayocabello-droid](https://github.com/jltamayocabello-droid)
-- 🎓 *Estudiante de Backend Developer (Udemy)*
+*Diseñador Front-End*
 
 ---
 
